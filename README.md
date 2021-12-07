@@ -1,1 +1,3 @@
-# https://github.com/chlbri/react-machina.git
+A combinaison between zustand and xstate...
+
+Docs comming soon

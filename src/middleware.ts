@@ -1,7 +1,13 @@
 import omit from 'object.omit';
-import { interpret, StateValue } from 'xstate';
+import { Event, interpret } from 'xstate';
 import { OMIT_KEYS } from './constants';
-import { AnyMachine, StateCreatorM, StateM, Store } from './types';
+import {
+  AnyMachine,
+  GetEvent,
+  StateCreatorM,
+  StateM,
+  Store,
+} from './types';
 
 export default function zstate<M extends AnyMachine>(
   machine: M,
@@ -20,7 +26,8 @@ export default function zstate<M extends AnyMachine>(
             value: state.value,
             state,
             matches: state.matches,
-            can: state.can,
+            can: (event: GetEvent<M>['type']) =>
+              state.nextEvents.includes(event),
           });
         }
       })
@@ -39,6 +46,8 @@ export default function zstate<M extends AnyMachine>(
     const onTransition = _service.onTransition;
     const context = _service.initialState.context;
     const value = _service.initialState.value;
+    const can = (event: Event<GetEvent<M>>) =>
+      _service.initialState.nextEvents.includes(event);
     const service = omit(_service, [...OMIT_KEYS.array]);
     // #endregion
 
@@ -56,6 +65,7 @@ export default function zstate<M extends AnyMachine>(
       context,
       value,
       matches,
+      can,
     } as Store<M>;
   };
 }

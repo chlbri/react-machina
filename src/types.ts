@@ -1,13 +1,12 @@
 import { NOmit } from '@core_chlbri/core';
 import {
-  StateMachine,
-  Interpreter,
-  interpret,
   EventObject,
-  Typestate,
+  Interpreter,
   State,
+  StateMachine,
+  Typestate,
 } from 'xstate';
-import type { SetState, GetState, StoreApi, StateCreator } from 'zustand';
+import type { GetState, SetState, StateCreator, StoreApi } from 'zustand';
 import { OMIT_KEYS } from './constants';
 
 type Ipt<
@@ -41,7 +40,7 @@ export type Store<M> = M extends StateMachine<
       context: C;
       [OMIT_KEYS.object.value]: Ipt<C, Sc, E, S>['state']['value'];
       [OMIT_KEYS.object.matches]: Ipt<C, Sc, E, S>['state']['matches'];
-      [OMIT_KEYS.object.can]: Ipt<C, Sc, E, S>['state']['can'];
+      [OMIT_KEYS.object.can]: (event: E['type']) => boolean;
     }
   : never;
 
@@ -56,6 +55,10 @@ export type GetStoreM<M extends AnyMachine = AnyMachine> = GetState<
 export type StoreApiM<M extends AnyMachine = AnyMachine> = StoreApi<
   Store<M>
 >;
+
+export type GetEvent<M> = M extends StateMachine<any, any, infer E, any>
+  ? E
+  : never;
 
 export type StateCreatorM<M extends AnyMachine = AnyMachine> =
   StateCreator<Store<M>, SetStoreM<M>, GetStoreM<M>, StoreApiM<M>>;
