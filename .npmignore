@@ -129,7 +129,7 @@ yarn.lock
 wconfig/
 .eslintrc*.*
 .eslintignore
-.gitpod.*
+.gitpod*
 .pnpm-debug.log
 .prettierignore
 .prettierrc.*
