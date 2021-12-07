@@ -1,0 +1,26 @@
+export const OMIT_KEYS = {
+  array: [
+    'send',
+    'state',
+    'onChange',
+    'onEvent',
+    'onSend',
+    'onDone',
+    'off',
+    'nextState',
+    'onTransition',
+  ],
+  object: {
+    send: 'send',
+    state: 'state',
+    onChange: 'onChange',
+    onEvent: 'onEvent',
+    onSend: 'onSend',
+    onDone: 'onDone',
+    off: 'off',
+    nextState: 'nextState',
+    onTransition: 'onTransition',
+    context: 'context',
+    value: 'value',
+  },
+} as const;

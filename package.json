@@ -1,5 +1,5 @@
 {
-  "name": "gitpod-typescript",
+  "name": "@core_chlbri/zstate",
   "version": "0.0.1",
   "description": "https://github.com/chlbri/react-machina.git",
   "author": "chlbri <bri_lvi@icloud.com>",
@@ -9,21 +9,33 @@
   "private": true,
   "scripts": {
     "tsc": "tsc",
-    "build": "yarn run tsc && yarn run lint",
+    "build": "pnpm run test && pnpm build:-test",
+    "build:-test": "pnpm run tsc && pnpm run lint",
     "test": "jest",
     "prettier": "prettier --write \"src/**/*.{ts,tsx}\"",
-    "eslint": "eslint \"{src/**/*,App}.{ts,tsx}\"",
-    "lint": "yarn run prettier && yarn run eslint --fix",
-    "rm": "./node_modules/.bin/rimraf -rf node_modules yarn.lock",
-    "rinit": "yarn run rm && yarn cache clean && yarn run yarn",
-    "publish": "yarn run rm && yarn run clean && yarn run yarn",
-    "clean": "yarn cache clean",
-    "yarn": "yarn install",
-    "git-push": "git push --tags"
+    "eslint": "eslint \"{src/**/*,App}.{ts,tsx,yml,json}\"",
+    "lint": "pnpm prettier && pnpm eslint -- --fix",
+    "rinit": "ts-node \"./wconfig/rinit.ts\" & pnpm pnpm:install",
+    "npm:prepublish": "ts-node \"./wconfig/pack.ts\" && pnpm install",
+    "npm:publish": "git checkout main && pnpm npm:prepublish && pnpm publish --access public --no-git-checks && git clean -fd && git checkout -- . && pnpm pnpm:install && ts-node \"./wconfig/clean.ts\"",
+    "pnpm:install": "pnpm install",
+    "publish:all": "pnpm run rinit && pnpm git-publish && pnpm npm:publish",
+    "upgrade:core": "pnpm upgrade @core_chlbri/core",
+    "upgrade": "pnpm upgrade",
+    "git-push": "git push --follow-tags",
+    "git-publish": "pnpm build && publish"
   },
   "devDependencies": {
+    "@testing-library/react-hooks": "^7.0.2",
+    "@types/edit-json-file": "^1.6.1",
     "@types/faker": "^5.5.9",
+    "@types/fs-extra": "^9.0.13",
     "@types/jest": "^27.0.3",
+    "@types/object.omit": "^3.0.0",
+    "@types/omit": "^1.0.0",
+    "@types/react": "^17.0.37",
+    "@types/react-test-renderer": "^17.0.1",
+    "@types/shelljs": "^0.8.9",
     "@typescript-eslint/eslint-plugin": "^5.6.0",
     "@typescript-eslint/parser": "^5.6.0",
     "dayjs": "^1.10.7",
@@ -36,13 +48,20 @@
     "jest-extended": "^1.2.0",
     "nanoid": "^3.1.30",
     "prettier": "^2.5.1",
+    "react": "^17.0.2",
+    "react-test-renderer": "^17.0.2",
     "rimraf": "^3.0.2",
     "shelljs": "^0.8.4",
     "ts-jest": "^27.1.0",
     "typescript": "^4.5.2"
   },
   "dependencies": {
-    "dequal": "^2.0.2"
+    "@core_chlbri/core": "^0.1.1-dc",
+    "dequal": "^2.0.2",
+    "object.omit": "^3.0.0",
+    "omit": "^1.0.1",
+    "xstate": "^4.26.1",
+    "zustand": "^3.6.7"
   },
   "repository": "https://github.com/chlbri/react-machina.git"
 }
