@@ -1,6 +1,6 @@
 {
   "name": "@core_chlbri/zstate",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A combinaison between zustand and xstate...",
   "author": "chlbri <bri_lvi@icloud.com>",
   "main": "dist/index.js",

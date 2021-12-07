@@ -140,3 +140,4 @@ wallaby.js
 dist
 src
 test
+__test__
