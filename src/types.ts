@@ -7,8 +7,8 @@ import {
   Typestate,
   State,
 } from 'xstate';
-import type {SetState, GetState, StoreApi, StateCreator} from 'zustand';
-import {OMIT_KEYS} from './constants';
+import type { SetState, GetState, StoreApi, StateCreator } from 'zustand';
+import { OMIT_KEYS } from './constants';
 
 type Ipt<
   C,
@@ -40,6 +40,8 @@ export type Store<M> = M extends StateMachine<
       [OMIT_KEYS.object.onTransition]: Ipt<C, Sc, E, S>['onTransition'];
       context: C;
       [OMIT_KEYS.object.value]: Ipt<C, Sc, E, S>['state']['value'];
+      [OMIT_KEYS.object.matches]: Ipt<C, Sc, E, S>['state']['matches'];
+      [OMIT_KEYS.object.can]: Ipt<C, Sc, E, S>['state']['can'];
     }
   : never;
 

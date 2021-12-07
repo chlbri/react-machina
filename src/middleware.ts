@@ -1,7 +1,7 @@
 import omit from 'object.omit';
-import {interpret} from 'xstate';
-import {OMIT_KEYS} from './constants';
-import {AnyMachine, StateCreatorM, StateM, Store} from './types';
+import { interpret, StateValue } from 'xstate';
+import { OMIT_KEYS } from './constants';
+import { AnyMachine, StateCreatorM, StateM, Store } from './types';
 
 export default function zstate<M extends AnyMachine>(
   machine: M,
@@ -15,13 +15,20 @@ export default function zstate<M extends AnyMachine>(
           Object.keys(state.children).length;
 
         if (state.changed || initialStateChanged) {
-          set({context: state.context, value: state.value, state});
+          set({
+            context: state.context,
+            value: state.value,
+            state,
+            matches: state.matches,
+            can: state.can,
+          });
         }
       })
       .start(initial);
 
     // #region Out
     const state = _service.state;
+    const matches = state.matches;
     const send = _service.send;
     const onChange = _service.onChange;
     const onEvent = _service.onEvent;
@@ -48,6 +55,7 @@ export default function zstate<M extends AnyMachine>(
       onTransition,
       context,
       value,
+      matches,
     } as Store<M>;
   };
 }

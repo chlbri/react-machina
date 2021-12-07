@@ -22,5 +22,7 @@ export const OMIT_KEYS = {
     onTransition: 'onTransition',
     context: 'context',
     value: 'value',
+    matches: 'matches',
+    can: 'can',
   },
 } as const;

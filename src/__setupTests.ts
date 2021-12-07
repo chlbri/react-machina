@@ -1,4 +1,4 @@
-import {assign, createMachine} from 'xstate/lib';
+import { assign, createMachine } from 'xstate/lib';
 import create from 'zustand';
 import zstate from './middleware';
 
@@ -24,7 +24,7 @@ export const context = {
   canWalk: false,
 };
 
-export type LightEvent = {type: 'TIMER'};
+export type LightEvent = { type: 'TIMER' };
 
 export const lightMachine = createMachine<typeof context, LightEvent>(
   {
@@ -79,17 +79,19 @@ export const lightMachine = createMachine<typeof context, LightEvent>(
   },
   {
     guards: {
-      searchValid: ({canWalk}) => canWalk,
+      searchValid: ({ canWalk }) => canWalk,
     },
     actions: {
       setCanWalk: assign({
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         canWalk: _ => true,
       }),
       setCannotWalk: assign({
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         canWalk: _ => false,
       }),
       inc: assign({
-        elapsed: ({elapsed}) => {
+        elapsed: ({ elapsed }) => {
           return elapsed + 1;
         },
       }),
