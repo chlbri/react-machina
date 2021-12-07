@@ -1,4 +1,3 @@
-import { NOmit } from '@core_chlbri/core';
 import {
   EventObject,
   Interpreter,
@@ -8,6 +7,8 @@ import {
 } from 'xstate';
 import type { GetState, SetState, StateCreator, StoreApi } from 'zustand';
 import { OMIT_KEYS } from './constants';
+
+export type NOmit<T, K extends keyof T> = Omit<T, K>;
 
 type Ipt<
   C,

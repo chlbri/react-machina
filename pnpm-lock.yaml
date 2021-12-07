@@ -15,7 +15,6 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.6.0
   '@typescript-eslint/parser': ^5.6.0
   dayjs: ^1.10.7
-  dequal: ^2.0.2
   edit-json-file: ^1.6.2
   eslint: ^8.4.1
   faker: ^5.5.3
@@ -26,7 +25,6 @@ specifiers:
   jest-extended: ^1.2.0
   nanoid: ^3.1.30
   object.omit: ^3.0.0
-  omit: ^1.0.1
   prettier: ^2.5.1
   react: ^17.0.2
   react-test-renderer: ^17.0.2
@@ -38,14 +36,10 @@ specifiers:
   zustand: ^3.6.7
 
 dependencies:
-  '@core_chlbri/core': 0.1.1-dc
-  dequal: 2.0.2
   object.omit: 3.0.0
-  omit: 1.0.1
-  xstate: 4.26.1
-  zustand: 3.6.7_react@17.0.2
 
 devDependencies:
+  '@core_chlbri/core': 0.1.1-dc
   '@testing-library/react-hooks': 7.0.2_509016fd322278d497c1e58f6164ce1d
   '@types/edit-json-file': 1.6.1
   '@types/faker': 5.5.9
@@ -75,6 +69,8 @@ devDependencies:
   shelljs: 0.8.4
   ts-jest: 27.1.0_d967a5c71b36617f9eaef12c091f7695
   typescript: 4.5.2
+  xstate: 4.26.1
+  zustand: 3.6.7_react@17.0.2
 
 packages:
 
@@ -441,7 +437,7 @@ packages:
     dependencies:
       dequal: 2.0.2
       nanoid: 3.1.30
-    dev: false
+    dev: true
 
   /@eslint/eslintrc/1.0.5:
     resolution: {integrity: sha512-BLxsnmK3KyPunz5wmCCpqy0YelEoxxGmH73Is+Z74oOTMtExcjkr3dDR6quwrjh1YspA8DH9gnX1o069KiS9AQ==}
@@ -1924,7 +1920,7 @@ packages:
   /dequal/2.0.2:
     resolution: {integrity: sha512-q9K8BlJVxK7hQYqa6XISGmBZbtQQWVXSrRrWreHC94rMt1QL/Impruc+7p2CYSYuVIUr+YCt6hjrs1kkdJRTug==}
     engines: {node: '>=6'}
-    dev: false
+    dev: true
 
   /detect-newline/3.1.0:
     resolution: {integrity: sha512-TLz+x/vEXm/Y7P7wn1EJFNLxYpUD4TgMosxY6fAVJUnJMbupHBOncxyWUG9OpTaH9EBD7uFI5LfEgmMOc54DsA==}
@@ -4312,6 +4308,7 @@ packages:
     resolution: {integrity: sha512-zJpuPDwOv8D2zq2WRoMe1HsfZthVewpel9CAvTfc/2mBD1uUT/agc5f7GHGWXlYkFvi1mVxe4IjvP2HNrop7nQ==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+    dev: true
 
   /nanomatch/1.2.13:
     resolution: {integrity: sha512-fpoe2T0RbHwBTBUOftAfBPaDEi06ufaUai0mE6Yn1kacc3SnTErfb/h+X94VXzI64rKFHYImXSvdwGGCmwOqCA==}
@@ -4437,10 +4434,6 @@ packages:
     dependencies:
       isobject: 3.0.1
     dev: true
-
-  /omit/1.0.1:
-    resolution: {integrity: sha1-BYoBtLbbEoezbstY36jhh3iVgBc=}
-    dev: false
 
   /once/1.4.0:
     resolution: {integrity: sha1-WDsap3WWHUsROsF9nFC6753Xa9E=}
@@ -5581,7 +5574,7 @@ packages:
 
   /xstate/4.26.1:
     resolution: {integrity: sha512-JLofAEnN26l/1vbODgsDa+Phqa61PwDlxWu8+2pK+YbXf+y9pQSDLRvcYH2H1kkeUBA5fGp+xFL/zfE8jNMw4g==}
-    dev: false
+    dev: true
 
   /y18n/4.0.3:
     resolution: {integrity: sha512-JKhqTOwSrqNA1NY5lSztJ1GrBiUodLMmIZuLiDaMRJ+itFd+ABVE8XBjOvIWL+rSqNDC74LCSFmlb/U4UZ4hJQ==}
@@ -5649,4 +5642,4 @@ packages:
         optional: true
     dependencies:
       react: 17.0.2
-    dev: false
+    dev: true
